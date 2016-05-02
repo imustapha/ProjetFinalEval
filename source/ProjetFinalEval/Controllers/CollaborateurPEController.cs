@@ -67,6 +67,7 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: CollaborateurPE/Create
+        [Authorize(Roles = "superuser")]
         public ActionResult Create()
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
@@ -75,6 +76,7 @@ namespace ProjetFinalEval.Controllers
 
         // POST: CollaborateurPE/Create
         [HttpPost]
+        [Authorize(Roles="superuser")]
         public async Task<ActionResult> Create(RegisterViewModel model)
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
@@ -99,14 +101,17 @@ namespace ProjetFinalEval.Controllers
                 {
                 var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 var resulte = await UserManager.CreateAsync(user, model.Password);
-
+                
                 var userToInsert =bd.aspnetusers.Where(i=>i.UserName==user.UserName).FirstOrDefault(); 
                     if(userToInsert != null){
 
                         var colpe = new collaborateurpe() { IdUser = userToInsert.Id, NOMPE = model.NOMPE, PRENOMPE = model.PRENOMPE, IDFONCTION = model.IDFONCTION, IMAGEPE = model.IMAGEPE, STATUT = model.STATUT };
                         if (resulte.Succeeded) {
+                            var currentUser = UserManager.FindByName(user.UserName);
 
+                            var roleresult = UserManager.AddToRole(currentUser.Id, "view");
                             await SignInAsync(user, isPersistent: false);
+                           
                             bd.collaborateurpe.Add(colpe);
                             bd.SaveChanges();
                             return RedirectToAction("Index");
