@@ -1,0 +1,169 @@
+﻿@model ProjetFinalEval.projet
+
+@{
+    ViewBag.Title = "";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<div class="page-bar">
+    <ul class="page-breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="~/Home/Accueil">Acceuil</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="~/projet/Index">Liste des Collaborateur Titulaires</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="~/projet/Create">Create</a>
+            <i class="fa fa-angle-right"></i>
+        </li>
+    </ul>
+</div>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.IDCLIENT, "IDCLIENT", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IDCLIENT", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IDCLIENT, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NOMPROJET, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Liste des Collaorateur Titulaire</label>
+            <div class="col-md-4">
+                @Html.ListBoxFor(m => m.collaborateurtitulaire, ViewBag.collaborateurtitulaire as SelectList, htmlAttributes: new { @Class = "form-control select2", @multiple = "multiple", id = "select2_sample_modal_2", required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Liste des Collaborateur en Esseai</label>
+            <div class="col-md-4">
+                @Html.ListBoxFor(m => m.collaborateurpe, ViewBag.collaborateurpe as SelectList, htmlAttributes: new { @Class = "form-control select2", @multiple = "multiple", id = "select2_sample_modal_2", required = "required" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Client Du Projet</label>
+            <div class="col-md-4">
+                @Html.DropDownListFor(M => M.IDCLIENT, ViewBag.Client as SelectList, "Selectionner le Client", htmlAttributes: new { @Class = "form-control", required = "required" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Durée de Projet</label>
+            <div class="">
+                <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+                    <span class="input-group-addon">
+                        De
+                    </span>
+                    <input type="text" class="form-control" name="DATEDEBUT">
+                    <span class="input-group-addon">
+                        A
+                    </span>
+                    <input type="text" class="form-control " name="DATEFIN">
+                </div>
+                <!-- /input-group -->
+
+            </div>
+        </div>
+
+
+        <div class="form-group ">
+            @Html.LabelFor(model => model.TYPE,"Type de Projet", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="md-radio-inline">
+                    <div class="md-radio">
+                        <input type="radio" id="radio53" name="TYPE" value="2" class="md-radiobtn">
+                        <label for="radio53">
+                            <span></span>
+                            <span class="check"></span>
+                            <span class="box"></span>
+                            Regi
+                        </label>
+                    </div>
+                    <div class="md-radio">
+                        <div class="md-radio">
+                            <input type="radio" id="radio54" name="TYPE" value="1" class="md-radiobtn" checked>
+                            <label for="radio54">
+                                <span></span>
+                                <span class="check"></span>
+                                <span class="box"></span>
+                                Thema
+                            </label>
+                        </div>
+                        <div class="md-radio">
+                            <div class="md-radio">
+                                <input type="radio" id="radio55" name="TYPE" value="0" class="md-radiobtn">
+                                <label for="radio55">
+                                    <span></span>
+                                    <span class="check"></span>
+                                    <span class="box"></span>
+                                    yyy
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Projet</label>
+            <div class="col-md-10">
+                <div class="md-radio-inline">
+                    <div class="md-radio">
+                        <input type="radio" id="radio56" name="FLAGTYPE" value=true class="md-radiobtn">
+                        <label for="radio56">
+                            <span></span>
+                            <span class="check"></span>
+                            <span class="box"></span>
+                            Interne
+                        </label>
+                    </div>
+                
+                <div class="md-radio">
+                    <div class="md-radio">
+                        <input type="radio" id="radio57" name="FLAGTYPE" value=false class="md-radiobtn" checked>
+                        <label for="radio57">
+                            <span></span>
+                            <span class="check"></span>
+                            <span class="box"></span>
+                            Externe
+                        </label>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+
+

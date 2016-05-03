@@ -31,12 +31,13 @@
             @Html.DisplayNameFor(model => model.client.ABREVIATION)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.collaborateurtitulaire.NOM)
+            @Html.DisplayNameFor(model => model.collaborateurtitulaire)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.NOMPROJET)
@@ -56,8 +57,11 @@
         <td>
             @Html.DisplayFor(modelItem => item.client.ABREVIATION)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.collaborateurtitulaire.NOM)
+        <td>        
+    @foreach (var colab in item.collaborateurtitulaire)
+	{
+		@Html.DisplayFor(M=>colab.NOM);
+	}
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDPROJET }) |

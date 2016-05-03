@@ -4718,12 +4718,12 @@
     <Content Include="Views\CollaborateurTitulaire\Edit.cshtml" />
     <Content Include="Views\CollaborateurTitulaire\Delete.cshtml" />
     <Content Include="Views\Projet\Index.cshtml" />
-    <Content Include="Views\Projet\Create.cshtml" />
     <Content Include="Views\Freelance\Index.cshtml" />
     <Content Include="Views\Freelance\Create.cshtml" />
     <Content Include="Views\Freelance\Details.cshtml" />
     <Content Include="Views\Freelance\Edit.cshtml" />
     <Content Include="Views\Freelance\Delete.cshtml" />
+    <Content Include="Views\Projet\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -4757,7 +4757,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>21343</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:21343/</IISUrl>
+          <IISUrl>http://localhost:12222/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

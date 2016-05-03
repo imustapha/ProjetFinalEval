@@ -24,17 +24,28 @@ namespace ProjetFinalEval.Controllers
         // GET: Projet/Create
         public ActionResult Create()
         {
+            ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+            ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
+
             return View();
         }
 
         // POST: Projet/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(projet Projet)
         {
+            ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+            ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
             try
             {
                 // TODO: Add insert logic here
-
+                if (ModelState.IsValid) {
+                    var pro = new projet { IDPROJET=Projet.IDPROJET, NOMPROJET=Projet.NOMPROJET, DATEDEBUT=Projet.DATEDEBUT,
+                    DATEFIN=Projet.DATEFIN, TYPE=Projet.TYPE, FLAGTYPE=Projet.FLAGTYPE, IDCLIENT=Projet.IDCLIENT,
+                    collaborateurtitulaire=Projet.collaborateurtitulaire, collaborateurpe=Projet.collaborateurpe};
+                }
                 return RedirectToAction("Index");
             }
             catch
