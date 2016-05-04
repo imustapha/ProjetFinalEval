@@ -67,7 +67,7 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: CollaborateurPE/Create
-        [Authorize(Roles = "superuser")]
+        [Authorize(Roles = "superuser,viewt,viewpe")]
         public ActionResult Create()
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
@@ -76,7 +76,7 @@ namespace ProjetFinalEval.Controllers
 
         // POST: CollaborateurPE/Create
         [HttpPost]
-        [Authorize(Roles="superuser")]
+        [Authorize(Roles="superuser,viewt,viewpe")]
         public async Task<ActionResult> Create(RegisterViewModel model)
         {
             ViewBag.IDFONCTION = new SelectList(bd.fonction, "IDFONCTION", "NOMFONCTION");
@@ -110,7 +110,7 @@ namespace ProjetFinalEval.Controllers
                             var currentUser = UserManager.FindByName(user.UserName);
 
                             var roleresult = UserManager.AddToRole(currentUser.Id, "viewpe");
-                            await SignInAsync(user, isPersistent: false);
+                           // await SignInAsync(user, isPersistent: false);
                            
                             bd.collaborateurpe.Add(colpe);
                             bd.SaveChanges();
