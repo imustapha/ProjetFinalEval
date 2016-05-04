@@ -105,7 +105,10 @@ namespace AppGestionEvaluation.Controllers
                         var CollT = new collaborateurtitulaire() { IdUser = userToInsert.Id, NOM = model.NOM, PRENOM = model.PRENOM, IDFONCTION = model.IDFONCTION, IMAGE = model.IMAGE, FLAGEVAL = model.FLAGEVAL };
                         if (resulte.Succeeded)
                         {
-
+                            var currentUser = UserManager.FindByName(user.UserName);
+                            if (model.FLAGEVAL == true)
+                            { var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
+                            else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
                             await SignInAsync(user, isPersistent: false);
                             bd.collaborateurtitulaire.Add(CollT);
                             bd.SaveChanges();

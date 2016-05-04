@@ -109,7 +109,7 @@ namespace ProjetFinalEval.Controllers
                         if (resulte.Succeeded) {
                             var currentUser = UserManager.FindByName(user.UserName);
 
-                            var roleresult = UserManager.AddToRole(currentUser.Id, "view");
+                            var roleresult = UserManager.AddToRole(currentUser.Id, "viewpe");
                             await SignInAsync(user, isPersistent: false);
                            
                             bd.collaborateurpe.Add(colpe);
