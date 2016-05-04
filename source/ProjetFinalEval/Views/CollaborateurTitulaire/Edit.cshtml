@@ -129,26 +129,33 @@
                                                 @Html.LabelFor(model => model.IDFONCTION, "Fonction", htmlAttributes: new { @class = "control-label" })
                                                 @Html.DropDownList("IDFONCTION", null, htmlAttributes: new { @class = "form-control", required = "required" })
                                             </div>
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.FLAGEVAL, "Evaluateur", htmlAttributes: new { @class = "control-label" })
-                                                <div class="checkbox">
+
+                                            <div class="form-group md-checkbox md-checkbox-list">
+
+                                                @Html.LabelFor(model => model.FLAGEVAL, "Evaluateur")
+                                                @Html.CheckBoxFor(model => model.FLAGEVAL, new { @class = "md-check", id = "checkbox6" }) 
+                                                <label for="checkbox6">
+                                                    <span></span>
+                                                    <span class="check"></span>
+                                                    <span class="box"></span>
                                                     
-                                                    @Html.EditorFor(model => model.FLAGEVAL)
-                                                </div>
+                                                 </label> 
                                             </div>
 
-                                            <div class="form-actions">
-                                                <div class="row">
-                                                    <div class="col-md-offset-3 col-md-9">
-                                                        <button type="submit" class="btn green">Save</button>
-                                                        <a href="@Url.Action("Index")" class="btn default">Retour</a>
+
+
+                                                    <div class="form-actions">
+                                                        <div class="row">
+                                                            <div class="col-md-offset-3 col-md-9">
+                                                                <button type="submit" class="btn green">Save</button>
+                                                                <a href="@Url.Action("Index")" class="btn default">Retour</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
+
+
                                                 </div>
-                                            </div>
-
-
-
-                                        </div>
                                     }
                                 </div>
 

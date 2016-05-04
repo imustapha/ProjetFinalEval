@@ -207,7 +207,7 @@ namespace AppGestionEvaluation.Controllers
 
         // POST: Collaborateur/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, collaborateurtitulaire CollTt,aspnetusers asp)
+        public ActionResult Delete(int? id, collaborateurtitulaire CollTt)
         {
             try
             {
