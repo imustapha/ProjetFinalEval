@@ -38,13 +38,15 @@ namespace ProjetFinalEval.Controllers
             ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
             ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
             ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
+            Projet.client = bd.client.Single(m => m.IDCLIENT == Projet.IDCLIENT);
             try
             {
                 // TODO: Add insert logic here
                 if (ModelState.IsValid) {
                     var pro = new projet { IDPROJET=Projet.IDPROJET, NOMPROJET=Projet.NOMPROJET, DATEDEBUT=Projet.DATEDEBUT,
                     DATEFIN=Projet.DATEFIN, TYPE=Projet.TYPE, FLAGTYPE=Projet.FLAGTYPE, IDCLIENT=Projet.IDCLIENT,
-                    collaborateurtitulaire=Projet.collaborateurtitulaire, collaborateurpe=Projet.collaborateurpe};
+                    collaborateurtitulaire=Projet.collaborateurtitulaire, collaborateurpe=Projet.collaborateurpe,client=Projet.client};
+
                     var x = bd.projet.Add(Projet);
                     bd.SaveChanges();
                     return RedirectToAction("Index");
