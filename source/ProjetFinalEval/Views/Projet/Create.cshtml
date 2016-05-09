@@ -74,16 +74,20 @@
                         </div>
 
                         <div class="form-group">
+                           
                             <label class="control-label col-md-3">Collaorateur Titulaire</label>
                             <div class="col-md-4">
-                                @Html.ListBoxFor(m => m.collaborateurtitulaire, ViewBag.collaborateurtitulaire as SelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
-                            </div>
+                            
+                                @Html.ListBoxFor(m => m.collaborateurtitulaire, ViewBag.collaborateurtitulaire as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                           
+                               </div>
+                              
                         </div>
-
+                            
                         <div class="form-group">
                             <label class="control-label col-md-3">Collaborateur en Esseai</label>
                             <div class="col-md-4">
-                                @Html.ListBoxFor(m => m.collaborateurpe, ViewBag.collaborateurpe as SelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
+                                @Html.ListBoxFor(m => m.collaborateurpe, ViewBag.collaborateurpe as MultiSelectList, htmlAttributes: new { @Class = "bs-select form-control", @multiple = "multiple", required = "required" })
                             </div>
                         </div>
                         <div class="form-group">

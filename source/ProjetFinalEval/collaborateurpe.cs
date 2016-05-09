@@ -11,7 +11,6 @@ namespace ProjetFinalEval
 {
     using System;
     using System.Collections.Generic;
-    using System.Web;
     
     public partial class collaborateurpe
     {
@@ -28,7 +27,6 @@ namespace ProjetFinalEval
         public byte[] IMAGEPE { get; set; }
         public string STATUT { get; set; }
         public string IdUser { get; set; }
-        public HttpPostedFileBase File { get; set; }
     
         public virtual aspnetusers aspnetusers { get; set; }
         public virtual ICollection<evaluation> evaluation { get; set; }

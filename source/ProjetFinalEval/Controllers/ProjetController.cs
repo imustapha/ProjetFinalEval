@@ -33,10 +33,65 @@ namespace ProjetFinalEval.Controllers
 
         // POST: Projet/Create
         [HttpPost]
-        public ActionResult Create(projet Projet)
+        public ActionResult Create(projet Projet,FormCollection  fc)
         {
-            ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
-            ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+           var testid = fc["collaborateurpe"];
+           
+           List<int> x=new List<int>();
+           string val0 = "";
+           for (int i = 0; i < testid.Length;i++ )
+           {
+               while ((testid[i] != ',') && (i < testid.Length))
+               {
+                   val0 = val0 + testid[i];
+                   i++;
+               }
+               int val = Int32.Parse(val0);
+               x.Add(val);
+               val0 = "";
+           //    if (testid[i].Equals(',')){
+               
+           //    val0 = "";
+           //    }
+           //else
+           //{ 
+           //    val0=val0+testid[i];
+              
+           //}
+           
+              
+           } 
+            for(int i=0;i<x.Count();i++){
+               int b = x[i];
+               Projet.collaborateurpe.Add(bd.collaborateurpe.Single(m => m.IDCOLLABORATEURPE == b));
+               
+                   }
+           var testid1 = fc["collaborateurpe"];
+
+           List<int> x1 = new List<int>();
+           string val01 = "";
+           for (int i = 0; i < testid1.Count(); i++)
+           {
+               if (testid1[i].Equals(','))
+               {
+                 
+                   val01 = "";
+               }
+               else
+               {
+                   val01 = val01 + testid1[i];
+
+                  
+               }
+               int val1 = Int32.Parse(val01);
+               x1.Add(val1);
+
+           } for (int i = 0; i < x1.Count(); i++)
+           {
+               Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == x1[i]));
+           }
+           ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM" + " " + "PRENOM");
+            ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
             ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
             Projet.client = bd.client.Single(m => m.IDCLIENT == Projet.IDCLIENT);
             try
@@ -47,7 +102,7 @@ namespace ProjetFinalEval.Controllers
                     DATEFIN=Projet.DATEFIN, TYPE=Projet.TYPE, FLAGTYPE=Projet.FLAGTYPE, IDCLIENT=Projet.IDCLIENT,
                     collaborateurtitulaire=Projet.collaborateurtitulaire, collaborateurpe=Projet.collaborateurpe,client=Projet.client};
 
-                    var x = bd.projet.Add(Projet);
+                    var y = bd.projet.Add(Projet);
                     bd.SaveChanges();
                     return RedirectToAction("Index");
                 }
