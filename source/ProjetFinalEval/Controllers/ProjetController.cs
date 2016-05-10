@@ -41,14 +41,18 @@ namespace ProjetFinalEval.Controllers
            string val0 = "";
            for (int i = 0; i < testid.Length;i++ )
            {
-               while ((testid[i] != ',') && (i < testid.Length))
+               while ((i < testid.Length)&&(testid[i] != ','))
                {
+                 
                    val0 = val0 + testid[i];
                    i++;
+                 
+                  
                }
                int val = Int32.Parse(val0);
                x.Add(val);
                val0 = "";
+              
            //    if (testid[i].Equals(',')){
                
            //    val0 = "";
@@ -66,29 +70,27 @@ namespace ProjetFinalEval.Controllers
                Projet.collaborateurpe.Add(bd.collaborateurpe.Single(m => m.IDCOLLABORATEURPE == b));
                
                    }
-           var testid1 = fc["collaborateurpe"];
+           var testid1 = fc["collaborateurtitulaire"];
 
            List<int> x1 = new List<int>();
            string val01 = "";
            for (int i = 0; i < testid1.Count(); i++)
            {
-               if (testid1[i].Equals(','))
+               while ((i < testid1.Length) && (testid1[i] != ','))
                {
-                 
-                   val01 = "";
-               }
-               else
-               {
-                   val01 = val01 + testid1[i];
 
-                  
+                   val01 = val01 + testid1[i];
+                   i++;
+
+
                }
                int val1 = Int32.Parse(val01);
                x1.Add(val1);
+               val01 = "";
 
            } for (int i = 0; i < x1.Count(); i++)
-           {
-               Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == x1[i]));
+           {int b=x1[i];
+               Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == b));
            }
            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM" + " " + "PRENOM");
             ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
