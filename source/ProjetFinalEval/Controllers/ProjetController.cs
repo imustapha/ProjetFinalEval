@@ -67,7 +67,9 @@ namespace ProjetFinalEval.Controllers
            } 
             for(int i=0;i<x.Count();i++){
                int b = x[i];
-               Projet.collaborateurpe.Add(bd.collaborateurpe.Single(m => m.IDCOLLABORATEURPE == b));
+               Projet.collaborateurpe.Add(bd.collaborateurpe.Where(m => m.IDCOLLABORATEURPE == b).FirstOrDefault());
+
+               //Projet.collaborateurpe.Add(bd.collaborateurpe.Single(m => m.IDCOLLABORATEURPE == b));
                
                    }
            var testid1 = fc["collaborateurtitulaire"];
@@ -89,8 +91,10 @@ namespace ProjetFinalEval.Controllers
                val01 = "";
 
            } for (int i = 0; i < x1.Count(); i++)
+              
            {int b=x1[i];
-               Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == b));
+           Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Where(m => m.IDCOLLABORATEURTITULAIRE == b).FirstOrDefault());
+               //Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == b));
            }
            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM" + " " + "PRENOM");
             ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
@@ -99,6 +103,7 @@ namespace ProjetFinalEval.Controllers
             try
             {
                 // TODO: Add insert logic here
+                
                 if (ModelState.IsValid) {
                     var pro = new projet { IDPROJET=Projet.IDPROJET, NOMPROJET=Projet.NOMPROJET, DATEDEBUT=Projet.DATEDEBUT,
                     DATEFIN=Projet.DATEFIN, TYPE=Projet.TYPE, FLAGTYPE=Projet.FLAGTYPE, IDCLIENT=Projet.IDCLIENT,
