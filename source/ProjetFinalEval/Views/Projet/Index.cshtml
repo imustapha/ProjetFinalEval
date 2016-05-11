@@ -5,80 +5,148 @@
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-12">
+        <!-- BEGIN EXAMPLE TABLE PORTLET-->
+        <div class="portlet box blue-madison">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-globe"></i>List des Projets
+                </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse">
+                    </a>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMPROJET)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATEDEBUT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATEFIN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FLAGTYPE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.client.ABREVIATION)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.collaborateurtitulaire)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.collaborateurpe)
-        </th>
-        <th></th>
-    </tr>
+                    <a href="javascript:;" class="reload">
+                    </a>
+                    <a href="javascript:;" class="remove">
+                    </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-toolbar">
+                    <div class="row">
+                        <div class="col-md-6">
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMPROJET)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATEDEBUT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATEFIN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FLAGTYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.client.ABREVIATION)
-        </td>
 
-        <td>        
-    @foreach (var colab in item.collaborateurtitulaire)
-	{
-		@Html.DisplayFor(M=>colab.NOM);
-	}
-        </td>
-        <td>
-            @foreach (var colab in item.collaborateurpe)
-            {
-                @Html.DisplayFor(M => colab.NOMPE);
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDPROJET }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDPROJET }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDPROJET })
-        </td>
-    </tr>
-}
+                            <div class="clearfix">
+                                <a href="@Url.Action("Create")" id="sample_editable_1_new" class="btn green">Creer <i class="fa fa-plus"></i></a>
+                            </div>
 
-</table>
+
+                        </div>
+
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered table-hover" id="sample_1">
+                    <thead>
+                        <tr>
+
+                            <th>
+                                
+                                Nom du projet
+                            </th>
+                            <th>
+                                Date debut
+                            </th>
+                            <th>
+                                
+                                Date fin
+                            </th>
+                            <th>
+                                
+                                Type projet
+                            </th>
+                            <th>
+                               
+                                Interne/Externe
+                            </th>
+                            <th>
+                               
+                                Client
+                            </th>
+                            <th>
+                                
+                                Collaborateur titulaire
+                            </th>
+                            <th>
+                                Collaborateur P.E
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NOMPROJET)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Day)/@Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Month)/@Html.DisplayFor(modelItem => item.DATEDEBUT.Value.Year)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DATEFIN.Value.Day)/@Html.DisplayFor(modelItem => item.DATEFIN.Value.Month)/@Html.DisplayFor(modelItem => item.DATEFIN.Value.Year)
+                                </td>
+                                <td>
+                                    @{var x = "";
+                                    if (item.TYPE == 2) { x = "Regi"; }
+                                    else if (item.TYPE == 1) { x = "Thema"; }
+                                    else { x = "yyy"; }
+                                    }
+                                    @x
+                                </td>
+                                <td>
+                                    @{var h = "";
+                                      if (item.FLAGTYPE == true)
+                                      {
+                                          h = "Interne";
+                                      }
+                                      else {
+                                          h = "Externe";
+                                      }
+                        }
+                                    @h
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.client.ABREVIATION)
+                                </td>
+
+                                <td>
+                                    @{var y = "";
+                                    foreach (var colab in item.collaborateurtitulaire)
+                                    {
+                                        y = y + colab.NOM + ",";
+                                    }
+                                    }
+                                    @y
+                                </td>
+                                <td>
+                                    @{var v = "";
+                                    foreach (var colab in item.collaborateurpe)
+                                    {
+                                        v = v + colab.NOMPE + ",";
+                                    }
+                                    }
+                                    @v
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.IDPROJET }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.IDPROJET }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.IDPROJET })
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- END EXAMPLE TABLE PORTLET-->
+    </div>
+</div>
+
+

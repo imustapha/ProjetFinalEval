@@ -33,70 +33,28 @@ namespace ProjetFinalEval.Controllers
 
         // POST: Projet/Create
         [HttpPost]
-        public ActionResult Create(projet Projet,FormCollection  fc)
+        public ActionResult Create([Bind(Exclude = "collaborateurtitulaire,collaborateurpe")]projet Projet, FormCollection fc)
         {
            var testid = fc["collaborateurpe"];
-           
-           List<int> x=new List<int>();
-           string val0 = "";
-           for (int i = 0; i < testid.Length;i++ )
+           string[] testids = testid.Split(',');
+           foreach (var item in testids)
            {
-               while ((i < testid.Length)&&(testid[i] != ','))
-               {
-                 
-                   val0 = val0 + testid[i];
-                   i++;
-                 
-                  
-               }
-               int val = Int32.Parse(val0);
-               x.Add(val);
-               val0 = "";
-              
-           //    if (testid[i].Equals(',')){
-               
-           //    val0 = "";
-           //    }
-           //else
-           //{ 
-           //    val0=val0+testid[i];
-              
-           //}
-           
-              
-           } 
-            for(int i=0;i<x.Count();i++){
-               int b = x[i];
+               int b = int.Parse(item);
                Projet.collaborateurpe.Add(bd.collaborateurpe.Where(m => m.IDCOLLABORATEURPE == b).FirstOrDefault());
-
-               //Projet.collaborateurpe.Add(bd.collaborateurpe.Single(m => m.IDCOLLABORATEURPE == b));
-               
-                   }
-           var testid1 = fc["collaborateurtitulaire"];
-
-           List<int> x1 = new List<int>();
-           string val01 = "";
-           for (int i = 0; i < testid1.Count(); i++)
-           {
-               while ((i < testid1.Length) && (testid1[i] != ','))
-               {
-
-                   val01 = val01 + testid1[i];
-                   i++;
-
-
-               }
-               int val1 = Int32.Parse(val01);
-               x1.Add(val1);
-               val01 = "";
-
-           } for (int i = 0; i < x1.Count(); i++)
-              
-           {int b=x1[i];
-           Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Where(m => m.IDCOLLABORATEURTITULAIRE == b).FirstOrDefault());
-               //Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Single(m => m.IDCOLLABORATEURTITULAIRE == b));
            }
-           ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM" + " " + "PRENOM");
+           var testid1 = fc["collaborateurtitulaire"];
+            string[] tt=testid1.Split(',');
+            foreach(var item in tt){
+                int b = int.Parse(item);
+                Projet.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Where(m => m.IDCOLLABORATEURTITULAIRE == b).FirstOrDefault());
+
+            }
+          
+              
+           
+           
+           
+           ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
             ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
             ViewBag.client = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
             Projet.client = bd.client.Single(m => m.IDCLIENT == Projet.IDCLIENT);
@@ -105,10 +63,7 @@ namespace ProjetFinalEval.Controllers
                 // TODO: Add insert logic here
                 
                 if (ModelState.IsValid) {
-                    var pro = new projet { IDPROJET=Projet.IDPROJET, NOMPROJET=Projet.NOMPROJET, DATEDEBUT=Projet.DATEDEBUT,
-                    DATEFIN=Projet.DATEFIN, TYPE=Projet.TYPE, FLAGTYPE=Projet.FLAGTYPE, IDCLIENT=Projet.IDCLIENT,
-                    collaborateurtitulaire=Projet.collaborateurtitulaire, collaborateurpe=Projet.collaborateurpe,client=Projet.client};
-
+                   
                     var y = bd.projet.Add(Projet);
                     bd.SaveChanges();
                     return RedirectToAction("Index");
