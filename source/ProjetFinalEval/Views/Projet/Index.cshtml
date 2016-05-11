@@ -132,10 +132,17 @@
                                     }
                                     @v
                                 </td>
+                                
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.IDPROJET }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.IDPROJET }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.IDPROJET })
+
+                                    <div class="clearfix">
+                                        
+                                        <div class="btn-group btn-group-circle btn-group-solid">
+                                            @Html.ActionLink("Modifier", "Edit", new { id = item.IDPROJET }, new { @class = "btn red" })
+                                            @Html.ActionLink("Details", "Details", new { id = item.IDPROJET }, new { @class = "btn yellow" })
+                                            @Html.ActionLink("Supprimer", "Delete", new { id = item.IDPROJET }, new { @class = "btn green" })
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
 

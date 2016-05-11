@@ -4724,6 +4724,7 @@
     <Content Include="Views\Freelance\Edit.cshtml" />
     <Content Include="Views\Freelance\Delete.cshtml" />
     <Content Include="Views\Projet\Create.cshtml" />
+    <Content Include="Views\Projet\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
