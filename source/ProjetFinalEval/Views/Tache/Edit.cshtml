@@ -1,0 +1,128 @@
+﻿@model ProjetFinalEval.tache
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+    <!-- BEGIN VALIDATION STATES-->
+    <div class="portlet box green">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-gift"></i>Advance Validation
+            </div>
+            <div class="tools">
+                <a href="javascript:;" class="collapse">
+                </a>
+                <a href="#portlet-config" data-toggle="modal" class="config">
+                </a>
+                <a href="javascript:;" class="reload">
+                </a>
+                <a href="javascript:;" class="remove">
+                </a>
+            </div>
+        </div>
+        <div class="portlet-body form">
+            <!-- BEGIN FORM-->
+            <form action="Create" method="Post" id="form_sample_3" class="form-horizontal" enctype="multipart/form-data">
+                <div class="form-body">
+                    <div class="alert alert-danger display-hide">
+                        <button class="close" data-close="alert"></button>
+                        You have some form errors. Please check below.
+                    </div>
+                    <div class="alert alert-success display-hide">
+                        <button class="close" data-close="alert"></button>
+                        Le Collaborateur a ete ajouter avec succes
+                    </div>
+
+
+
+
+
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.IDCLIENT, "IDCLIENT", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IDCLIENT", null, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.IDCLIENT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NOMTACHE, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.NOMTACHE, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NOMTACHE, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="control-label col-md-3">Réaliser Par</label>
+                            <div class="col-md-4">
+
+                                @Html.DropDownListFor(m => m.IDCOLLABORATEURTITULAIRE, ViewBag.Collaborateur as SelectList, htmlAttributes: new { @Class = "bs-select form-control", required = "required" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Collaborateur en Esseai</label>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(Model => Model.IDPROJET, ViewBag.Projet as SelectList, "Selectionner le Projet", htmlAttributes: new { @Class = "bs-select form-control", required = "required" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date Debut Tache</label>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.DATEDEBUTTACHE, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
+                                <span class="help-block">
+                                    Select date MM/DD/YYYY
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Date Fin Tache</label>
+                            <div class="col-md-3">
+                                @Html.EditorFor(model => model.DATEFINTACHE, new { htmlAttributes = new { @class = "form-control form-control-inline input-medium date-picker" } })
+                                <span class="help-block">
+                                    Select date MM/DD/YYYY
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" id="" class="btn green">Save</button>
+                            <a href="@Url.Action("Index")" class="btn default">Retour</a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <!-- END FORM-->
+        </div>
+        <!-- END VALIDATION STATES-->
+    </div>
+</div>

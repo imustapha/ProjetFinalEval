@@ -17,9 +17,13 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: Tache/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if(id==null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            tache Tache = new tache();
+            Tache = bd.tache.Find(id);
+            return View(Tache);
         }
 
         // GET: Tache/Create
@@ -57,20 +61,37 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: Tache/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            ViewBag.Collaborateur = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
+            if(id==null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            tache Tache = bd.tache.Find(id);
+            if (Tache == null)
+                return HttpNotFound();
+            return View(Tache);
         }
 
         // POST: Tache/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(tache Tache)
         {
+            ViewBag.Collaborateur = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
+            Tache.collaborateurtitulaire = bd.collaborateurtitulaire.Single(m=>m.IDCOLLABORATEURTITULAIRE==Tache.IDCOLLABORATEURTITULAIRE);
+            Tache.projet = bd.projet.Single(m => m.IDPROJET == Tache.IDPROJET);
             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(Tache).State = System.Data.Entity.EntityState.Modified;
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(Tache);
             }
             catch
             {
