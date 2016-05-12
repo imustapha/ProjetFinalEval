@@ -1,0 +1,105 @@
+﻿@model ProjetFinalEval.projet
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
+}
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Index">Liste des projets</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Delete/@Model.IDPROJET">Supprimer</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
+<div class="row">
+    <div class="col-md-12">
+
+        <h3>Êtes-vous sûr de vouloir supprimer ce projet?</h3>
+
+        
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="icon-equalizer font-red-sunglo"></i>
+                    
+                    <span class="caption-helper">Projet de </span>
+                    <span class="caption-subject font-red-sunglo bold uppercase">@Model.client.ABREVIATION</span>
+                </div>
+                
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.NOMPROJET, "Nom de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.NOMPROJET, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.NOMPROJET, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DATEDEBUT, "Date debut", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.DATEDEBUT, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DATEDEBUT, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.DATEFIN, "Date fin", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.DATEFIN, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.DATEFIN, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.TYPE, "Type de projet", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                
+                                @Html.EditorFor(model => model.TYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.TYPE, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FLAGTYPE, "Interne/Externe", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+
+                                @Html.EditorFor(model => model.FLAGTYPE, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.client.ABREVIATION, "Client", htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.client.ABREVIATION, new { htmlAttributes = new { @class = "form-control", disabled = true } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.FLAGTYPE, "", new { @class = "text-danger" })
+                        </div>
+                       
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="col-md-offset-3 col-md-9">
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Supprimer" class="btn red-haze" />@Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn default" })
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+</div>
+</div>

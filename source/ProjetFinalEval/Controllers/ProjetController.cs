@@ -98,6 +98,7 @@ namespace ProjetFinalEval.Controllers
 
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
             projet col = bd.projet.Find(id);
             
             if (col == null)
@@ -122,20 +123,52 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: Projet/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            projet bb=bd.projet.Find(id);
+            var x = "";
+                                if (bb.TYPE == 2) { x = "Regi"; }
+                                else if (bb.TYPE == 1) { x = "Thema"; }
+                                else { x = "yyy"; }
+
+                                ViewBag.Type = x;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            projet colpe = bd.projet.Find(id);
+            if (colpe == null)
+            {
+                return HttpNotFound();
+            }
+            return View(colpe);
         }
 
         // POST: Projet/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, projet pro)
         {
             try
             {
-                // TODO: Add delete logic here
+                projet colpe = new projet();
+              
+                if (ModelState.IsValid)
+                {
+                    if (id == null)
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                return RedirectToAction("Index");
+                    colpe = bd.projet.Find(id);
+                    
+                    if (colpe == null)
+                        return HttpNotFound();
+
+
+                    bd.projet.Remove(colpe);
+                    
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+
+                } return View(colpe);
             }
             catch
             {
