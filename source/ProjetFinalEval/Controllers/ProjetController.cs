@@ -88,9 +88,21 @@ namespace ProjetFinalEval.Controllers
         }
 
         // GET: Projet/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+
+            ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM",bd.projet.Find(id).collaborateurtitulaire);
+            ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE",bd.projet.Find(id).collaborateurpe);
+            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION",bd.projet.Find(id).client.IDCLIENT);
+           
+
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            projet col = bd.projet.Find(id);
+            
+            if (col == null)
+                return HttpNotFound();
+            return View(col);
         }
 
         // POST: Projet/Edit/5
