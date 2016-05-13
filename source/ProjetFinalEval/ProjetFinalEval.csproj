@@ -4730,7 +4730,12 @@
     <Content Include="Views\Tache\Index.cshtml" />
     <Content Include="Views\Tache\Delete.cshtml" />
     <Content Include="Views\Projet\Edit.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Projet\Delete.cshtml" />
+=======
+    <Content Include="Views\Tache\Details.cshtml" />
+    <Content Include="Views\Tache\Edit.cshtml" />
+>>>>>>> 4170232154d45c54499ef8134186c0257f11d6d8
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
