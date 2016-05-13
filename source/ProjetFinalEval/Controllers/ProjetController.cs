@@ -91,9 +91,9 @@ namespace ProjetFinalEval.Controllers
         public ActionResult Edit(int? id)
         {
 
-            ViewBag.collaborateurtitulaire = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM",bd.projet.Find(id).collaborateurtitulaire);
-            ViewBag.collaborateurpe = new SelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE",bd.projet.Find(id).collaborateurpe);
-            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION",bd.projet.Find(id).client.IDCLIENT);
+            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
            
 
             if (id == null)
@@ -132,6 +132,16 @@ namespace ProjetFinalEval.Controllers
                                 else { x = "yyy"; }
 
                                 ViewBag.Type = x;
+           var z = "";
+           if (bb.FLAGTYPE == true){
+               z = "Interne";
+           }
+           else{
+               z = "Externe";
+           } ViewBag.flag = z;
+
+           ViewBag.datedebut = bb.DATEDEBUT.Value.Day.ToString() + "/" + bb.DATEDEBUT.Value.Month.ToString() + "/" + bb.DATEDEBUT.Value.Year.ToString();
+           ViewBag.datedefin = bb.DATEFIN.Value.Day.ToString() + "/" + bb.DATEFIN.Value.Month.ToString() + "/" + bb.DATEFIN.Value.Year.ToString();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
