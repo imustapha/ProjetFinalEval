@@ -24,19 +24,16 @@
 
         <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->
-        <div class="col-md-8">
+        <div class="col-md-12">
             <!-- BEGIN VALIDATION STATES-->
             <div class="portlet light">
                 <div class="portlet-title tabbable-line">
                     <div class="caption caption-md">
-                        <i class="icon-globe theme-font hide"></i>
-                        <span class="caption-subject font-blue-madison bold uppercase">Etes-vous sur de vouloir supprimer cette tache</span>
+                        <i class=" icon-trash font-blue"></i>
+                        <span class="caption-helper">Etes-vous sur de vouloir supprimer la tache</span>
+                        <span class="caption-subject font-blue-madison bold uppercase">@Model.NOMTACHE</span>
                     </div>
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
-                        </li>
-                    </ul>
+
                 </div>
                 <div class="portlet-body form">
                     @using (Html.BeginForm())
@@ -106,19 +103,18 @@
                         </div>
 
                     }
+                    <div><br /></div>
 
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-actions no-color">
+                        <div >
                             @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-3" })
                             <div>
                                 <input type="submit" value="Delete" class="btn green" />
                                 @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
                             </div>
                         </div>
-                    }
+                    
+                    <div><br /></div>
                 </div>
             </div>
         </div>

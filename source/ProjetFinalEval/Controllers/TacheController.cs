@@ -75,19 +75,26 @@ namespace ProjetFinalEval.Controllers
 
         // POST: Tache/Edit/5
         [HttpPost]
-        public ActionResult Edit(tache Tache)
+        public ActionResult Edit(int id,tache Tache)
         {
             ViewBag.Collaborateur = new SelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
             ViewBag.Projet = new SelectList(bd.projet, "IDPROJET", "NOMPROJET");
-            Tache.collaborateurtitulaire = bd.collaborateurtitulaire.Single(m=>m.IDCOLLABORATEURTITULAIRE==Tache.IDCOLLABORATEURTITULAIRE);
-            Tache.projet = bd.projet.Single(m => m.IDPROJET == Tache.IDPROJET);
+            tache T = bd.tache.Find(id);
+            T.IDTACHE = id;
+            T.NOMTACHE=Tache.NOMTACHE;
+            T.DATEDEBUTTACHE = Tache.DATEDEBUTTACHE;
+            T.DATEFINTACHE = Tache.DATEFINTACHE;
+            T.IDPROJET = Tache.IDPROJET;
+            T.IDCOLLABORATEURTITULAIRE = Tache.IDCOLLABORATEURTITULAIRE;
+            T.collaborateurtitulaire = bd.collaborateurtitulaire.Single(m=>m.IDCOLLABORATEURTITULAIRE==Tache.IDCOLLABORATEURTITULAIRE);
+            T.projet = bd.projet.Single(m => m.IDPROJET == Tache.IDPROJET);
             try
             {
 
                 // TODO: Add update logic here
                 if (ModelState.IsValid)
                 {
-                    bd.Entry(Tache).State = System.Data.Entity.EntityState.Modified;
+                    bd.Entry(T).State = System.Data.Entity.EntityState.Modified;
                     bd.SaveChanges();
                     return RedirectToAction("Index");
                 }

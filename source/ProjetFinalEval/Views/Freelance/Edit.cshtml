@@ -1,13 +1,24 @@
 ﻿@model ProjetFinalEval.freelance
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<h2>Edit</h2>
 
 
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Freelance/Index">Liste des Freelance</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Freelance/Edit/@Model.IDFREELANCE">Modifier</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 
 
 <div class="col-md-12">
