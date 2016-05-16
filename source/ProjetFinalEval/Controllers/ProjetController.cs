@@ -91,9 +91,15 @@ namespace ProjetFinalEval.Controllers
         public ActionResult Edit(int? id)
         {
 
-            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
-            ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
-            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
+            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM", bd.projet.Find(id).collaborateurtitulaire.ToString());
+            var vv = "";
+            var tab = bd.projet.Find(id).collaborateurpe ;
+            for (int i = 0; i < tab.Count(); i++)
+            {
+                vv += tab.ElementAtOrDefault(i).NOMPE ;
+            }
+                ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE",vv.ToString());
+            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION", bd.projet.Find(id).client.ToString());
            
 
             if (id == null)
