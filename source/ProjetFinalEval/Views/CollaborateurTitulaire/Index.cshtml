@@ -10,7 +10,7 @@
         
         <a href="~/Home/Accueil">Acceuil</a>
         <i class="fa fa-circle"></i>
-        <a href="~/ConllaborateurTitulaire/Index">Liste des Collaborateur Titulaires</a>
+        <a href="~/CollaborateurTitulaire/Index">Liste des Collaborateur Titulaires</a>
         <i class="fa fa-circle"></i>
 
     </li>
@@ -99,11 +99,13 @@
                                 </td>
                                 <td>
                                     <div class=" clearfix">
-                                        <div class="btn-group btn-group-circle btn-group-solid">
-                                            @Html.ActionLink("Modifier", "Edit", "CollaborateurTitulaire", new { id = item.IDCOLLABORATEURTITULAIRE }, new { @class = "btn red" })
-                                            @Html.ActionLink("Details", "Details", "CollaborateurTitulaire", new { id = item.IDCOLLABORATEURTITULAIRE }, new { @class = "btn yellow" })
-                                            @Html.ActionLink("Supprimer", "Delete", "CollaborateurTitulaire", new { id = item.IDCOLLABORATEURTITULAIRE }, new { @class = "btn green" })
-                                        </div>
+
+                                            <center>
+                                                <a href="@Url.Action("Edit", new { id = item.IDCOLLABORATEURTITULAIRE })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                                <a href="@Url.Action("Details", new { id = item.IDCOLLABORATEURTITULAIRE })" id="sample_editable_1_new" class="btn yellow"> <i class="glyphicon glyphicon-list-alt"></i></a>
+                                                <a href="@Url.Action("Delete", new { id = item.IDCOLLABORATEURTITULAIRE })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                            </center>
+
                                     </div>
 
                                 </td>

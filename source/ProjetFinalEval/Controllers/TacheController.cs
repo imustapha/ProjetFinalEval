@@ -22,7 +22,10 @@ namespace ProjetFinalEval.Controllers
             if(id==null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             tache Tache = new tache();
+
             Tache = bd.tache.Find(id);
+            ViewBag.datedebut = Tache.DATEDEBUTTACHE.Value.Day.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Month.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Year.ToString();
+            ViewBag.datefin = Tache.DATEFINTACHE.Value.Day.ToString() + "/" + Tache.DATEFINTACHE.Value.Month.ToString() + "/" + Tache.DATEFINTACHE.Value.Year.ToString();
             return View(Tache);
         }
 
@@ -118,6 +121,8 @@ namespace ProjetFinalEval.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.datedebut = Tache.DATEDEBUTTACHE.Value.Day.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Month.ToString() + "/" + Tache.DATEDEBUTTACHE.Value.Year.ToString();
+            ViewBag.datefin = Tache.DATEFINTACHE.Value.Day.ToString() + "/" + Tache.DATEFINTACHE.Value.Month.ToString() + "/" + Tache.DATEFINTACHE.Value.Year.ToString();
             return View(Tache);
         }
 

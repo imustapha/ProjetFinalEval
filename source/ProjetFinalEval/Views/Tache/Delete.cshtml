@@ -4,11 +4,8 @@
     ViewBag.Title = "";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
-
 <ul class="page-breadcrumb breadcrumb">
     <li>
-
-
         <a href="~/Home/Accueil">Accueil</a>
         <i class="fa fa-circle"></i>
         <a href="~/Tache/Index">Liste des Collaborateur Titulaires</a>
@@ -16,12 +13,9 @@
         <a href="~/Tache/Delete/@Model.IDTACHE">Supprimer</a>
         <i class="fa fa-circle"></i>
     </li>
-
 </ul>
 <div class="row">
     <div class="col-md-12">
-
-
         <!-- END BEGIN PROFILE SIDEBAR -->
         <!-- BEGIN PROFILE CONTENT -->
         <div class="col-md-12">
@@ -33,7 +27,6 @@
                         <span class="caption-helper">Etes-vous sur de vouloir supprimer la tache</span>
                         <span class="caption-subject font-blue-madison bold uppercase">@Model.NOMTACHE</span>
                     </div>
-
                 </div>
                 <div class="portlet-body form">
                     @using (Html.BeginForm())
@@ -43,8 +36,6 @@
                         <div class="form-horizontal">
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.IDCOLLABORATEURTITULAIRE)
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.NOMTACHE, "Tache", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-4">
@@ -67,53 +58,46 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
-
                                 @Html.LabelFor(model => model.IDPROJET, "Projet", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-4">
-                                    <div class="input-group">
+
                                         @{
                                             var w=Model.IDPROJET;
                                             var z = bd.projet.Single(m=>m.IDPROJET == w).NOMPROJET;
                                         }
                                         @Html.EditorFor(model => z, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
 
-                                    </div>
                                 </div>
                             </div>
-
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATEDEBUTTACHE, "Date Debut", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.DATEDEBUTTACHE,new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                    @{var xy = ViewBag.datedebut; }
+                                    @Html.EditorFor(model => xy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+
+
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATEFINTACHE, "Date Fin", htmlAttributes: new { @class = "control-label col-md-3"})
                                 <div class="col-md-4">
                                     <div class="checkbox">
-                                        @Html.EditorFor(model => model.DATEFINTACHE,new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @{var xx = ViewBag.datefin; }
+                                        @Html.EditorFor(model => xx, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     }
-                    <div><br /></div>
-
-
+                    <div><br/></div>
                         <div >
                             @Html.Label(" ", htmlAttributes: new { @class = "control-label col-md-3" })
                             <div>
                                 <input type="submit" value="Delete" class="btn green" />
                                 @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
                             </div>
-                        </div>
-                    
+                        </div>                    
                     <div><br /></div>
                 </div>
             </div>

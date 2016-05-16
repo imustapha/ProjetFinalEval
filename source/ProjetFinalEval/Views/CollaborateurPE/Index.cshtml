@@ -97,11 +97,13 @@
                                 </td>
                                 <td>
                                     <div class="clearfix">
-                                        <div class="btn-group btn-group-circle btn-group-solid">
-                                            @Html.ActionLink("Modifier", "Edit", new { id = item.IDCOLLABORATEURPE }, new { @class = "btn red" })
-                                            @Html.ActionLink("Details", "Details", new { id = item.IDCOLLABORATEURPE }, new { @class = "btn yellow" })
-                                            @Html.ActionLink("Supprimer", "Delete", new { id = item.IDCOLLABORATEURPE }, new { @class = "btn green" })
-                                        </div>
+
+                                            <center>
+                                                <a href="@Url.Action("Edit", new { id = item.IDCOLLABORATEURPE })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                                <a href="@Url.Action("Details", new { id = item.IDCOLLABORATEURPE })" id="sample_editable_1_new" class="btn yellow"> <i class="glyphicon glyphicon-list-alt"></i></a>
+                                                <a href="@Url.Action("Delete", new { id = item.IDCOLLABORATEURPE })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                            </center>
+                                       
                                     </div>
 
                                 </td>

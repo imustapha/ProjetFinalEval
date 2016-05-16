@@ -29,14 +29,10 @@
             <div class="portlet light">
                 <div class="portlet-title tabbable-line">
                     <div class="caption caption-md">
-                        <i class="icon-globe theme-font hide"></i>
-                        Tout les informations sur la tache <span class="caption-subject font-blue-madison bold uppercase">@Model.NOMTACHE</span>
-                    </div>
-                    <ul class="nav nav-tabs">
-                        <li class="active">
-                            <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
-                        </li>
-                    </ul>
+                        <i class="icon-note font-blue" ></i>
+                        <span class="caption-helper">les informations de la tache </span><span class="caption-subject font-blue-madison bold uppercase">@Model.NOMTACHE</span>
+</div>
+
                 </div>
                 <div class="portlet-body form">
                     @using (Html.BeginForm())
@@ -74,15 +70,15 @@
                             <div class="form-group">
 
                                 @Html.LabelFor(model => model.IDPROJET, "Projet", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-4">
-                                    <div class="input-group">
+
+                                    <div class="col-md-4">
                                         @{
                                         var w = Model.IDPROJET;
                                         var z = bd.projet.Single(m => m.IDPROJET == w).NOMPROJET;
                                         }
                                         @Html.EditorFor(model => z, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
 
-                                    </div>
+                                    
                                 </div>
                             </div>
 
@@ -90,8 +86,10 @@
 
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DATEDEBUTTACHE, "Date Debut", htmlAttributes: new { @class = "control-label col-md-3" })
-                                <div class="col-md-4">
-                                    @Html.EditorFor(model => model.DATEDEBUTTACHE, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                <div class="col-md-4  " >
+                                    @{var xy = ViewBag.datedebut; }
+                                    @Html.EditorFor(model=>xy, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                   
                                 </div>
                             </div>
 
@@ -99,7 +97,8 @@
                                 @Html.LabelFor(model => model.DATEFINTACHE, "Date Fin", htmlAttributes: new { @class = "control-label col-md-3" })
                                 <div class="col-md-4">
                                     <div class="checkbox">
-                                        @Html.EditorFor(model => model.DATEFINTACHE, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                        @{var xx = ViewBag.datefin; }
+                                        @Html.EditorFor(model => xx, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                                     </div>
                                 </div>
                             </div>
@@ -108,18 +107,16 @@
                     }
 
 
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                        <div class="form-actions no-color">
 
-                            <div>
-                                @Html.ActionLink("Edit", "Edit", null, new { id = Model.IDTACHE }, htmlAttributes: new { @class = "btn green" })
-                                @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
-                            </div>
+
+                        <div class="col-md-offset-3">
+                            @Html.ActionLink("Edit", "Edit", null, new { id = Model.IDTACHE }, htmlAttributes: new { @class = "btn green" })
+                            @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
                         </div>
-                    }
-                </div>
+                        
+
+
+                    </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<ProjetFinalEval.tache>
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
@@ -10,7 +9,7 @@
 
         <a href="~/Home/Accueil">Accueil</a>
         <i class="fa fa-circle"></i>
-        <a href="~/Tache/Index">Liste des Tache</a>
+        <a href="~/Tache/Index">Liste des Taches</a>
         <i class="fa fa-circle"></i>
     </li>
 
@@ -22,7 +21,7 @@
         <div class="portlet box blue-madison">
             <div class="portlet-title">
                 <div class="caption">
-                    <i class="fa fa-globe"></i>List des Projets
+                    <i class="fa fa-globe"></i>List des Taches
                 </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse">
@@ -54,21 +53,21 @@
                         <tr>
 
                             <th>
-                                @Html.DisplayNameFor(model => model.NOMTACHE)
+                                Nom de Tache
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DATEDEBUTTACHE)
+                                Date debut de tache
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.DATEFINTACHE)
+                              Date fin de tache
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.collaborateurtitulaire.NOM)
+                               Réaliser par le collaborateur
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.projet.NOMPROJET)
+                                Projet
                             </th>
-                            <th></th>
+                            <th><center></center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,10 +79,10 @@
                                     @Html.DisplayFor(modelItem => item.NOMTACHE)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DATEDEBUTTACHE)
+                                    @Html.DisplayFor(modelItem => item.DATEDEBUTTACHE.Value.Day)/@Html.DisplayFor(modelItem => item.DATEDEBUTTACHE.Value.Month)/@Html.DisplayFor(modelItem => item.DATEDEBUTTACHE.Value.Year)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.DATEFINTACHE)
+                                    @Html.DisplayFor(modelItem => item.DATEFINTACHE.Value.Day)/@Html.DisplayFor(modelItem => item.DATEFINTACHE.Value.Month)/@Html.DisplayFor(modelItem => item.DATEFINTACHE.Value.Year)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.collaborateurtitulaire.NOM)
@@ -91,10 +90,11 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.projet.NOMPROJET)
                                 </td>
-                                <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.IDTACHE }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.IDTACHE }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.IDTACHE })
+                                <td><Center>
+                                    <a href="@Url.Action("Edit", new { id = item.IDTACHE })" id="sample_editable_1_new" class="btn green"> <i class="glyphicon glyphicon-pencil"></i></a>
+                                    <a href="@Url.Action("Details", new { id = item.IDTACHE })" id="sample_editable_1_new" class="btn yellow"> <i class="glyphicon glyphicon-list-alt"></i></a>
+                                    <a href="@Url.Action("Delete", new { id = item.IDTACHE })" id="sample_editable_1_new" class="btn red"> <i class="glyphicon glyphicon-trash"></i></a>
+                                    </Center>
                                 </td>
                             </tr>
 
