@@ -91,15 +91,15 @@ namespace ProjetFinalEval.Controllers
         public ActionResult Edit(int? id)
         {
 
-            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM", bd.projet.Find(id).collaborateurtitulaire.ToString());
+            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
             var vv = "";
             var tab = bd.projet.Find(id).collaborateurpe ;
             for (int i = 0; i < tab.Count(); i++)
             {
                 vv += tab.ElementAtOrDefault(i).NOMPE ;
             }
-                ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE",vv.ToString());
-            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION", bd.projet.Find(id).client.ToString());
+            ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION", bd.projet.Find(id).client.IDCLIENT);
            
 
             if (id == null)
@@ -114,13 +114,56 @@ namespace ProjetFinalEval.Controllers
 
         // POST: Projet/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int? id, [Bind(Exclude = "collaborateurtitulaire,collaborateurpe")]projet pro, FormCollection fc)
         {
+
+            ViewBag.collaborateurtitulaire = new MultiSelectList(bd.collaborateurtitulaire, "IDCOLLABORATEURTITULAIRE", "NOM");
+            ViewBag.collaborateurpe = new MultiSelectList(bd.collaborateurpe, "IDCOLLABORATEURPE", "NOMPE");
+            ViewBag.IDCLIENT = new SelectList(bd.client, "IDCLIENT", "ABREVIATION");
+
+            projet p = bd.projet.Find(id);
+            p.IDPROJET =(int) id;
+            p.NOMPROJET = pro.NOMPROJET;
+            p.DATEDEBUT = pro.DATEDEBUT;
+            p.DATEFIN = pro.DATEFIN;
+            p.TYPE = pro.TYPE;
+            p.IDCLIENT = pro.IDCLIENT;
+            p.client = bd.client.Single(m => m.IDCLIENT == pro.IDCLIENT);
+            p.FLAGTYPE = pro.FLAGTYPE;
+            var testid = fc["collaborateurpe"];
+            string[] testids = testid.Split(',');
+            p.collaborateurpe.Clear();
+            foreach (var item in testids)
+            {
+                int b = int.Parse(item);
+                p.collaborateurpe.Add(bd.collaborateurpe.Where(m => m.IDCOLLABORATEURPE == b).FirstOrDefault());
+            }
+            var testid1 = fc["collaborateurtitulaire"];
+            string[] tt = testid1.Split(',');
+            foreach (var item in tt)
+            {
+                int b = int.Parse(item);
+                p.collaborateurtitulaire.Add(bd.collaborateurtitulaire.Where(m => m.IDCOLLABORATEURTITULAIRE == b).FirstOrDefault());
+
+            }
+
+
+
+
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    bd.Entry(p).State = System.Data.Entity.EntityState.Modified;
 
-                return RedirectToAction("Index");
+                   
+
+                    bd.SaveChanges();
+                    return RedirectToAction("Index");
+
+
+                }
+                return View(p);
             }
             catch
             {
