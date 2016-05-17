@@ -1,29 +1,29 @@
 ﻿@model ProjetFinalEval.projet
 
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Ajouter un nouveau projet";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
-<div class="page-bar">
-    <ul class="page-breadcrumb">
-        <li>
-            <i class="fa fa-home"></i>
-            <a href="~/Home/Accueil">Acceuil</a>
-            <i class="fa fa-angle-right"></i>
-            <a href="~/projet/Index">Liste des Collaborateur Titulaires</a>
-            <i class="fa fa-angle-right"></i>
-            <a href="~/projet/Create">Create</a>
-            <i class="fa fa-angle-right"></i>
-        </li>
-    </ul>
-</div>
+
+<ul class="page-breadcrumb breadcrumb">
+    <li>
+
+        <a href="~/Home/Accueil">Accueil</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Index">Liste des projets</a>
+        <i class="fa fa-circle"></i>
+        <a href="~/Projet/Create">Ajouter</a>
+        <i class="fa fa-circle"></i>
+    </li>
+
+</ul>
 <div class="col-md-12">
     <!-- BEGIN VALIDATION STATES-->
     <div class="portlet box green">
         <div class="portlet-title">
             <div class="caption">
-                <i class="fa fa-gift"></i>Advance Validation
+                <i class="fa fa-plus-square"></i>Projet
             </div>
             <div class="tools">
                 <a href="javascript:;" class="collapse">
@@ -191,8 +191,8 @@
                 <div class="form-actions">
                     <div class="row">
                         <div class="col-md-offset-3 col-md-9">
-                            <button type="submit" class="btn green">Submit</button>
-                            <button type="reset" class="btn red">Cancel</button>
+                            <button type="submit" class="btn green">Ajouter</button>
+                            <button type="reset" class="btn red">Annuler</button>
                             <a href="@Url.Action("Index")" class="btn default">Retour</a>
                         </div>
                     </div>

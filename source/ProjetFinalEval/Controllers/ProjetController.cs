@@ -140,6 +140,7 @@ namespace ProjetFinalEval.Controllers
             }
             var testid1 = fc["collaborateurtitulaire"];
             string[] tt = testid1.Split(',');
+            p.collaborateurtitulaire.Clear();
             foreach (var item in tt)
             {
                 int b = int.Parse(item);

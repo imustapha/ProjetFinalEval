@@ -1,7 +1,7 @@
 ﻿@model ProjetFinalEval.projet
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Details sur un projet";
     Layout = "~/Views/Shared/_LayoutStablePage1.cshtml";
 }
 
@@ -182,8 +182,8 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-offset-3 col-md-9">
-                                            @Html.ActionLink("Edit", "Edit", new { id = Model.IDPROJET }, new { @class = "btn green" })
-                                            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn default" })
+                                            @Html.ActionLink("Modifier", "Edit", new { id = Model.IDPROJET }, new { @class = "btn green" })
+                                            @Html.ActionLink("Retour à la liste", "Index", null, new { @class = "btn default" })
                                         </div>
                                     </div>
                                 </div>

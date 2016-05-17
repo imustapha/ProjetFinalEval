@@ -4718,7 +4718,6 @@
     <Content Include="Views\CollaborateurTitulaire\Create.cshtml" />
     <Content Include="Views\CollaborateurTitulaire\Edit.cshtml" />
     <Content Include="Views\CollaborateurTitulaire\Delete.cshtml" />
-    <Content Include="Views\Projet\Index.cshtml" />
     <Content Include="Views\Freelance\Index.cshtml" />
     <Content Include="Views\Freelance\Create.cshtml" />
     <Content Include="Views\Freelance\Details.cshtml" />
@@ -4733,6 +4732,7 @@
     <Content Include="Views\Tache\Details.cshtml" />
     <Content Include="Views\Tache\Edit.cshtml" />
     <Content Include="Views\Projet\Edit.cshtml" />
+    <Content Include="Views\Projet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
