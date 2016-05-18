@@ -109,7 +109,7 @@ namespace AppGestionEvaluation.Controllers
                             if (model.FLAGEVAL == true)
                             { var roleresult = UserManager.AddToRole(currentUser.Id, "superuser"); }
                             else { var roleresult = UserManager.AddToRole(currentUser.Id, "viewt"); }
-                            await SignInAsync(user, isPersistent: false);
+                            //await SignInAsync(user, isPersistent: false);
                             bd.collaborateurtitulaire.Add(CollT);
                             bd.SaveChanges();
                             return RedirectToAction("Index");
